@@ -58,7 +58,7 @@ services:
 
   db:
     restart: always
-    image: postgres:9.5
+    image: postgres:9.4
     environment:
       - POSTGRES_PASSWORD=odoo
       - POSTGRES_USER=odoo
