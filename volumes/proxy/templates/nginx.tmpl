@@ -131,7 +131,7 @@ upstream {{ $upstream_name }} {
 {{ end }}
 }
 
-upstream odoochat {
+upstream {{ printf "odoochat-%s" $host }} {
 {{ range $container := $containers }}
 
         {{ range $knownNetwork := $CurrentContainer.Networks }}
@@ -236,7 +236,7 @@ server {
                 include /etc/nginx/vhost.d/default_location;
                 {{ end }}
 	}
-        location /longpolling {proxy_pass http://odoochat;}
+        location /longpolling {proxy_pass {{ printf "http://odoochat-%s" $host }};}
 }
 
 {{ end }}
@@ -274,7 +274,7 @@ server {
                 include /etc/nginx/vhost.d/default_location;
                 {{ end }}
 	}
-        location /longpolling {proxy_pass http://odoochat;}
+        location /longpolling {proxy_pass {{ printf "http://odoochat-%s" $host }};}
 }
 
 {{ if (and (not $is_https) (exists "/etc/nginx/certs/default.crt") (exists "/etc/nginx/certs/default.key")) }}
