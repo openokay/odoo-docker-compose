@@ -3,7 +3,7 @@ version: "2"
 services:
   nginx:
     restart: always
-    image: nginx
+    image: nginx:stable
     container_name: nginx
     ports:
       - "80:80"
@@ -58,7 +58,7 @@ services:
 
   db:
     restart: always
-    image: postgres:9.4
+    image: postgres:9.6.11
     environment:
       - POSTGRES_PASSWORD=odoo
       - POSTGRES_USER=odoo
